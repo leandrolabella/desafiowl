@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+  <title>Gerenciamento do café - WL</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
+  <link rel="icon" href="logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <img src="logo.png" width="64">
+      <ul class="right hide-on-med-and-down">
+        <li class="active"><a href="/coffee">Lista do café da manhã</a></li>
+        <li><a href="badges.html">Produtos</a></li>
+        <li><a href="/admin">Admin</a></li>
+        </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <h4 style="text-align: center">Lista do café</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>Colaborador(a)</th>
+          <th>Item</th>
+          <th>Data</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="coffee : ${coffees}">
+          <td><span th:text="${coffee.userName}"></span></td>
+          <td><span th:text="${coffee.itemId}"></span></td>
+          <td><span th:text="${coffee.coffeeDate}"></span></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <button class="btn waves-effect waves-light" type="submit" name="submit">Escolher produto
+      <i class="material-icons left">add</i>
+    </button>
+  </div>
+
+  <script type="text/javascript" src="materialize/js/materialize.js"></script>
+</body>
+
+</html>
