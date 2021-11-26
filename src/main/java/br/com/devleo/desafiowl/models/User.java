@@ -1,28 +1,55 @@
 package br.com.devleo.desafiowl.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
+import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    @NotNull
     private String name;
+    @NotNull
     private String email;
+    @NotNull
     private String cpf;
+    @NotNull
     private String area;
+    @NotNull
     private String password;
+    @NotNull
     private Boolean admin;
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private List<Coffee> coffees = new ArrayList<>();
 
     public User() {
+    }
+
+    public User(Long id, String name, String email, String cpf, String area, String password, Boolean admin){
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.cpf = cpf;
+        this.area = area;
+        this.password = password;
+        this.admin = admin;
     }
 
     public Long getId() {
@@ -82,6 +109,10 @@ public class User {
 
     public void setAdmin(Boolean admin) {
         this.admin = admin;
+    }
+
+    public List<Coffee> getCoffees() {
+        return coffees;
     }
 
 }

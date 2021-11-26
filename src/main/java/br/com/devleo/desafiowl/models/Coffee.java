@@ -6,19 +6,25 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "coffees")
 public class Coffee {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String userCpf;
+    
+    @ManyToOne
+    @JoinColumn(name = "user_ID")
+    private User user;
+    @NotNull
     private String itemId;
     @Temporal(TemporalType.DATE)
     private Date coffeeDate;
@@ -26,20 +32,12 @@ public class Coffee {
     public Coffee() {
     }
 
-    public String getUserName() {
-        return userName;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getUserCpf() {
-        return userCpf;
-    }
-
-    public void setUserCpf(String userCpf) {
-        this.userCpf = userCpf;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getItemId() {
