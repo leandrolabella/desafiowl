@@ -21,10 +21,10 @@ public class NewUserController {
 
     @RequestMapping(value = "/cadastrar", method = RequestMethod.POST)
     public String user(User user) {
-        user.setCpf(user.getCpf().replace(".", "").replace("-", ""));
+        String cpf = user.getCpf().replace(".", "").replace("-", "");
         user.setAdmin(false);
         if (userRepository.findUserByEmail(user.getEmail()) != null
-                || userRepository.findUserByCpf(user.getCpf()) != null) {
+                || userRepository.findUserByCpf(cpf) != null) {
             return "redirect:/cadastrar";
         }
         userRepository.save(user);

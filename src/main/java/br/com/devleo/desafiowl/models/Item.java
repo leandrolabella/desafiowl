@@ -32,11 +32,11 @@ public class Item {
         this.name = name;
     }
 
-    public String getDesc() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDesc(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 

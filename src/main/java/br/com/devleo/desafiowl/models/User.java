@@ -5,6 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 @Entity
 @Table(name = "users")
@@ -44,6 +46,13 @@ public class User {
     }
 
     public String getCpf() {
+        try {
+            MaskFormatter format = new MaskFormatter("###.###.###-##");
+            JFormattedTextField formatf = new JFormattedTextField(format);
+            formatf.setText(cpf);
+            return formatf.getText();
+        } catch (Exception ignored) {
+        }
         return cpf;
     }
 

@@ -6,23 +6,24 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
     <link rel="icon" href="logo.png">
+    <link rel="stylesheet" href="customcss/custom.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
-    <div class="container">
+<body class="fundo">
+    <div class="container cadastro">
         <form class="container" method="post">
             <div class="row">
-                <div class="input-field col s10">
+                <div class="input-field col s12">
                     <p>Nome: <input type="text" value="" name="name" required /></p>
                 </div>
-                <div class="input-field col s5">
+                <div class="input-field col s7">
                     E-mail: <input type="Email" value="" name="email" required />
                 </div>
                 <div class="input-field col s5">
-                    CPF: <input type="text" value="" name="cpf" required />
+                    CPF: <input type="text" value="" name="cpf" minlength="11" maxlength="11" required />
                 </div>
-                <div class="input-field col s5">
+                <div class="input-field col s7">
                     Departamento: <input list="areas" name="area" required />
                     <datalist id="areas">
                         <option value="TI"></option>

@@ -3,6 +3,7 @@ package br.com.devleo.desafiowl.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.com.devleo.desafiowl.models.Item;
@@ -27,5 +28,18 @@ public class AdminController {
         mv.addObject("items", items);
         mv.addObject("users", users);
         return mv;
+    }
+
+    @RequestMapping(value = "/admin", method = RequestMethod.POST)
+    public String newItem(Item item) {
+        itemRepository.save(item);
+        return "redirect:/admin";
+    }
+
+    @RequestMapping("/remove")
+    public String delItem(long id){
+        Item item = itemRepository.getById(id);
+        itemRepository.delete(item);
+        return "redirect:/admin";
     }
 }

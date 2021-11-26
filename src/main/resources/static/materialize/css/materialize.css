@@ -3,9 +3,6 @@
  * Copyright 2014-2017 Materialize
  * MIT License (https://raw.githubusercontent.com/Dogfalo/materialize/master/LICENSE)
  */
-.form-pixel{
-  box-shadow: 1px 5px 10px black;
-}
 
 .materialize-red {
   background-color: #e51c23 !important;

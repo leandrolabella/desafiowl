@@ -6,21 +6,25 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
   <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
   <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="customcss/custom.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-  <nav>
-    <div class="nav-wrapper">
-      <img src="logo.png" width="64">
-      <ul class="right hide-on-med-and-down">
-        <li><a href="/coffee">Lista do café da manhã</a></li>
-        <li><a href="badges.html">Produtos</a></li>
-        <li class="active"><a href="/admin">Admin</a></li>
-      </ul>
-    </div>
-  </nav>
-  <div class="container">
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <img src="logo.png" width="64">
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/coffee">Lista do café da manhã</a></li>
+          <li><a href="badges.html">Produtos</a></li>
+          <li class="active"><a href="/admin">Admin</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container detalhes">
     <h4 style="text-align: center">Usuários</h4>
     <table>
       <thead>
@@ -30,7 +34,6 @@
           <th>E-mail</th>
           <th>Departamento</th>
           <th>CPF</th>
-          <th>Ação</th>
         </tr>
       </thead>
       <tbody>
@@ -43,9 +46,8 @@
         </tr>
       </tbody>
     </table>
-    <br>
-    <br>
-    <br>
+  </div>
+  <div class="container detalhes">
     <h4 style="text-align: center">Produtos</h4>
     <table>
       <thead>
@@ -54,6 +56,7 @@
           <th>Produto</th>
           <th>Descrição</th>
           <th>Quantidade</th>
+          <th>Ação</th>
         </tr>
       </thead>
       <tbody>
@@ -62,30 +65,31 @@
           <td><span th:text="${item.name}"></span></td>
           <td><span th:text="${item.description}"></span></td>
           <td><span th:text="${item.quantity}"></span></td>
+          <td><a class="waves-effect waves-light btn-small" th:href="${(#mvc.url('AC#delItem').arg(0, item.id)).build()}"><i class="material-icons left">delete_forever</i></a></td>
         </tr>
       </tbody>
     </table>
     <br>
-    <div class="left">
-      <form class="form-pixel" method="post">
-        <h6 style="font-weight: bold; text-align: center;">Novo produto</h6>
-        <div class="row">
-          <div class="input-field col s4">
-            <p>Produto: <input type="text" value="" name="name" required /></p>
-          </div>
-          <div class="input-field col s6">
-            <p>Descrição: <input type="text" value="" name="name" required /></p>
-          </div>
-          <div class="input-field col s2">
-            <p>Quantia: <input type="number" value="" name="name" min="1" max="100" required /></p>
-          </div>
+  </div>
+  <div class="container detalhes">
+    <form class="form-pixel" method="post">
+      <h4 style="text-align: center;">Cadastrar produto</h4>
+      <div class="row">
+        <div class="input-field col s4">
+          <p class="detalhes-text">Produto: <input type="text" value="" name="name" required /></p>
         </div>
-        <button class="btn waves-effect waves-light" type="submit" name="submit">Cadastrar
-          <i class="material-icons right">send</i>
-        </button>
-      </form>
-    </div>
-    <br>
+        <div class="input-field col s6">
+          <p class="detalhes-text">Descrição: <input type="text" value="" name="description" required /></p>
+        </div>
+        <div class="input-field col s2">
+          <p class="detalhes-text">Quantia: <input type="number" value="" name="quantity" min="1" max="100" required />
+          </p>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="submit">Adicionar
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
   </div>
 
   <script type="text/javascript" src="materialize/js/materialize.js"></script>
