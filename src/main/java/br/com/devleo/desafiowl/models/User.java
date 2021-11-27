@@ -1,6 +1,7 @@
 package br.com.devleo.desafiowl.models;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -15,14 +16,17 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String name;
     @NotNull
@@ -42,7 +46,7 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String name, String email, String cpf, String area, String password, Boolean admin){
+    public User(Long id, String name, String email, String cpf, String area, String password, Boolean admin) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -95,6 +99,7 @@ public class User {
         this.area = area;
     }
 
+    @Override
     public String getPassword() {
         return password;
     }
@@ -113,6 +118,40 @@ public class User {
 
     public List<Coffee> getCoffees() {
         return coffees;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        // TODO Auto-generated method stub
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        // TODO Auto-generated method stub
+        return true;
     }
 
 }

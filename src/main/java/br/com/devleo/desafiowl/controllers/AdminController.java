@@ -22,7 +22,7 @@ public class AdminController {
     private UserRepository userRepository;
 
     @RequestMapping("/admin")
-    public ModelAndView listCoffes() {
+    public ModelAndView listValues() {
         ModelAndView mv = new ModelAndView("admin");
         Iterable<Item> items = itemRepository.findAll();
         Iterable<User> users = userRepository.findAll();

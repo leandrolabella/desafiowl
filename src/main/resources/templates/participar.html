@@ -2,28 +2,71 @@
 <html xmlns:th="http://thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 
 <head>
-    <title>Participar do café - WL</title>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
-    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
-    <link rel="icon" href="logo.png">
-    <link rel="stylesheet" href="customcss/custom.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Participar do café - WL</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
+  <link rel="icon" href="logo.png">
+  <link rel="stylesheet" href="customcss/custom.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
 <body>
-    <header>
-        <nav>
-            <div class="nav-wrapper">
-                <img src="logo.png" width="64">
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="/coffee">Lista do café da manhã</a></li>
-                    <li class="active"><a href="/new">Participar</a></li>
-                    <li><a href="/admin">Admin</a></li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <script type="text/javascript" src="materialize/js/materialize.js"></script>
+  <header>
+    <nav>
+      <div class="nav-wrapper">
+        <img src="logo.png" width="64">
+        <ul class="right hide-on-med-and-down">
+          <li><a href="/coffee">Lista do café da manhã</a></li>
+          <li class="active"><a href="/new">Participar</a></li>
+          <li><a href="/admin">Admin</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <div class="container-participar">
+    <div class="Header">
+      <h3 class="Heading">Participar do café</h3>
+    </div>
+    <form class="form-pixel" method="post">
+      <div class="row">
+        <div class="input-field col s4">
+          <p class="detalhes-text">ID do Produto: <input type="number" value="" name="itemId" min="1" required /></p>
+        </div>
+        <div class="input-field col s6">
+          <p class="detalhes-text">Data do café: <input type="date" value="" name="coffeeDate" required /></p>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light" type="submit" name="submit">Participar
+        <i class="material-icons right">send</i>
+      </button>
+    </form>
+  </div>
+  <div class="container detalhes">
+    <div class="Header">
+      <h3 class="Heading">Produtos disponíveis</h3>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Produto</th>
+          <th>Descrição</th>
+          <th>Quantidade</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="item : ${items}">
+          <td><span th:text="${item.id}"></span></td>
+          <td><span th:text="${item.name}"></span></td>
+          <td><span th:text="${item.description}"></span></td>
+          <td><span th:text="${item.quantity}"></span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <script type="text/javascript" src="materialize/js/materialize.js"></script>
 </body>
 
 </html>

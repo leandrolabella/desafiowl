@@ -39,6 +39,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr th:if="${users.empty}">
+          <td colspan="2"> Nenhum usuário encontrado </td>
+        </tr>
         <tr th:each="user : ${users}">
           <td><span th:text="${user.id}"></span></td>
           <td><span th:text="${user.name}"></span></td>
@@ -52,7 +55,7 @@
   <div class="container detalhes">
     <div class="Header">
       <h3 class="Heading">Produtos</h3>
-      <h5 class="Action" href="/removeAll">Remover todos</h5>
+      <a class="Action" href="/removeAll">Remover todos</a>
     </div>
     <table>
       <thead>
@@ -65,6 +68,9 @@
         </tr>
       </thead>
       <tbody>
+        <tr th:if="${items.empty}">
+          <td colspan="2"> Nenhum produto encontrado </td>
+        </tr>
         <tr th:each="item : ${items}">
           <td><span th:text="${item.id}"></span></td>
           <td><span th:text="${item.name}"></span></td>

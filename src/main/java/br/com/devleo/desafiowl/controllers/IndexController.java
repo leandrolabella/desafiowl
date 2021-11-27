@@ -13,7 +13,7 @@ public class IndexController {
     @Autowired
     private UserRepository userRepository;
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String index() {
         return "login";
     }
