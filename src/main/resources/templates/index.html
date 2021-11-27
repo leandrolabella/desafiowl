@@ -16,9 +16,10 @@
       <div class="nav-wrapper">
         <img src="logo.png" width="64">
         <ul class="right hide-on-med-and-down">
-          <li class="active"><a href="/coffee">Lista do café da manhã</a></li>
+          <li class="active"><a href="/">Lista do café da manhã</a></li>
           <li><a href="/new">Participar</a></li>
           <li><a href="/admin">Admin</a></li>
+          <li><a href="/logout">Sair</a></li>
         </ul>
       </div>
     </nav>
@@ -38,8 +39,8 @@
       </thead>
       <tbody>
         <tr th:each="coffee : ${coffees}">
-          <td><span th:text="${coffee.userName}"></span></td>
-          <td><span th:text="${coffee.itemId}"></span></td>
+          <td><span th:text="${coffee.user.name}"></span><a> - </a><span th:text="${coffee.user.area}"></span></td>
+          <td><span th:text="${coffee.item.name}"></span></td>
           <td><span th:text="${coffee.coffeeDate}"></span></td>
         </tr>
       </tbody>

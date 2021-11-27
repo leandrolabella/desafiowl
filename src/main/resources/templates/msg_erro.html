@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://thymeleaf.org">
+
+<head>
+    <link type="text/css" rel="stylesheet" href="materialize/css/materialize.css" media="screen,projection" />
+</head>
+
+<body>
+    <div class="alerta-erro" role="alert" th:if="${not #strings.isEmpty(msg)}">
+        <span th:text="${msg}"></span>
+    </div>
+</body>
+
+</html>

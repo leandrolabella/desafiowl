@@ -1,5 +1,7 @@
 package br.com.devleo.desafiowl.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -11,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "coffees")
@@ -20,12 +21,15 @@ public class Coffee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @ManyToOne
     @JoinColumn(name = "user_ID")
     private User user;
-    @NotNull
-    private String itemId;
+
+    @ManyToOne
+    @JoinColumn(name = "item_ID")
+    private Item item;
+
     @Temporal(TemporalType.DATE)
     private Date coffeeDate;
 
@@ -40,19 +44,27 @@ public class Coffee {
         this.user = user;
     }
 
-    public String getItemId() {
-        return itemId;
+    public Item getItem() {
+        return item;
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
+    public void setItemid(String itemid){
+        this.item = new Item(Long.parseLong(itemid), null, null, null);
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
     }
 
     public Date getCoffeeDate() {
         return coffeeDate;
     }
 
-    public void setCoffeeDate(Date coffeeDate) {
-        this.coffeeDate = coffeeDate;
+    public void setCoffeeDate(String coffeeDate) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            this.coffeeDate = format.parse(coffeeDate);
+        } catch (ParseException ignored) {
+        }
     }
 }

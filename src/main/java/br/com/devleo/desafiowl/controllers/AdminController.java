@@ -1,6 +1,5 @@
 package br.com.devleo.desafiowl.controllers;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -38,14 +37,14 @@ public class AdminController {
     }
 
     @RequestMapping("/remove")
-    public String delItem(long id){
+    public String delItem(long id) {
         Item item = itemRepository.getById(id);
         itemRepository.delete(item);
         return "redirect:/admin";
     }
 
     @RequestMapping("/removeAll")
-    public String delAllItems(){
+    public String delAllItems() {
         itemRepository.deleteAll();
         return "redirect:/admin";
     }

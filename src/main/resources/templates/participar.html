@@ -16,9 +16,10 @@
       <div class="nav-wrapper">
         <img src="logo.png" width="64">
         <ul class="right hide-on-med-and-down">
-          <li><a href="/coffee">Lista do café da manhã</a></li>
+          <li><a href="/">Lista do café da manhã</a></li>
           <li class="active"><a href="/new">Participar</a></li>
           <li><a href="/admin">Admin</a></li>
+          <li><a href="/logout">Sair</a></li>
         </ul>
       </div>
     </nav>
@@ -31,12 +32,13 @@
     <form class="form-pixel" method="post">
       <div class="row">
         <div class="input-field col s4">
-          <p class="detalhes-text">ID do Produto: <input type="number" value="" name="itemId" min="1" required /></p>
+          <p class="detalhes-text">ID do Produto: <input type="number" value="" name="itemid" min="1" required /></p>
         </div>
         <div class="input-field col s6">
           <p class="detalhes-text">Data do café: <input type="date" value="" name="coffeeDate" required /></p>
         </div>
       </div>
+      <th:block th:include="msg_erro"></th:block>
       <button class="btn waves-effect waves-light" type="submit" name="submit">Participar
         <i class="material-icons right">send</i>
       </button>

@@ -1,3 +1,11 @@
+.alerta-erro{
+    background-color: #E44C4C;
+    width: 85%;
+    margin-top: -20px;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
 .login{
     position: absolute;
     width: 55%;
@@ -16,9 +24,9 @@
     width: 60%;
     box-shadow: 0px 0px 8px #26a69a;
     background-color: white;
-    top: 25%;
-    left: 20%;
-    margin-top: -55px;
+    top: 15%;
+    left: 15%;
+    margin-top: -50px;
     padding-right: 10px;
     padding-bottom: 5px;
 }
