@@ -8,6 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import br.com.devleo.desafiowl.models.Item;
 import br.com.devleo.desafiowl.models.User;
+import br.com.devleo.desafiowl.repositories.CoffeeRepository;
 import br.com.devleo.desafiowl.repositories.ItemRepository;
 import br.com.devleo.desafiowl.repositories.UserRepository;
 
@@ -19,6 +20,9 @@ public class AdminController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private CoffeeRepository coffeeRepository;
 
     @RequestMapping("/admin")
     public ModelAndView listValues() {
@@ -39,12 +43,14 @@ public class AdminController {
     @RequestMapping("/remove")
     public String delItem(long id) {
         Item item = itemRepository.getById(id);
+        coffeeRepository.deleteAllid(item);
         itemRepository.delete(item);
         return "redirect:/admin";
     }
 
     @RequestMapping("/removeAll")
     public String delAllItems() {
+        coffeeRepository.deleteAll();
         itemRepository.deleteAll();
         return "redirect:/admin";
     }

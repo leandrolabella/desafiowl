@@ -59,10 +59,6 @@ public class CoffeeController {
     @RequestMapping(value = "/new", method = RequestMethod.POST)
     public String participar(@Valid Coffee coffee, BindingResult result, RedirectAttributes attributes) {
         Date dt = new Date();
-        Calendar c = Calendar.getInstance();
-        c.setTime(dt);
-        c.add(Calendar.DATE, 1);
-        dt = c.getTime();
         SecurityContext securityContext = SecurityContextHolder.getContext();
         Authentication auth = securityContext.getAuthentication();
         if (auth == null || !auth.isAuthenticated()) {
@@ -74,16 +70,15 @@ public class CoffeeController {
             attributes.addFlashAttribute("msg", "" + result.getAllErrors());
             return "redirect:/new";
         }
-        if (coffee.getCoffeeDate().compareTo(dt) < 0) {
+        if (coffee.getCoffeeDate().before(dt)) {
             attributes.addFlashAttribute("msg", "A data do café deve ser maior que a data de hoje.");
             return "redirect:/new";
         }
-        Item item = itemRepository.getById(coffee.getItem().getId());
-        if (item == null) {
+        if (!itemRepository.containsItem(coffee.getItem().getId())) {
             attributes.addFlashAttribute("msg", "Não foi encontrado um item com este ID, tente novamente.");
             return "redirect:/new";
         }
-        if (coffeeRepository.containsItem(coffee.getCoffeeDate(), item)) {
+        if (coffeeRepository.containsItem(coffee.getCoffeeDate(), coffee.getItem())) {
             attributes.addFlashAttribute("msg", "Outro colaborador já vai levar este produto, escolha outro.");
             return "redirect:/new";
         }
